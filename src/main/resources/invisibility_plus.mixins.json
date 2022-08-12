@@ -4,6 +4,7 @@
   "package": "com.mmodding.invisibility_plus.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EntityMixin",
     "LivingEntityMixin"
   ],
   "client": [],
