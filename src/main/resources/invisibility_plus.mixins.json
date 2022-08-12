@@ -5,7 +5,10 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EntityMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "PotionsAccessor",
+    "PotionsMixin",
+    "StatusEffectInstanceMixin"
   ],
   "client": [],
   "injectors": {
