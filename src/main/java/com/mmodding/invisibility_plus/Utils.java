@@ -18,11 +18,23 @@ public class Utils {
 		return new Potion("invisibility", new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, amplifier));
 	}
 
+	public static boolean amplifierHasEnabledEffects(int amplifier) {
+		return switch (amplifier) {
+			case 1 -> InvisibilityPlus.config.getBoolean("inv2effects");
+			case 2 -> InvisibilityPlus.config.getBoolean("inv3effects");
+			case 3 -> InvisibilityPlus.config.getBoolean("inv4effects");
+			case 4 -> InvisibilityPlus.config.getBoolean("inv5effects");
+			default -> false;
+		};
+	}
+
 	public static void checkInvisibilityAmplifierAndRun(LivingEntity livingEntity, int amplifier, Runnable runnable) {
-		if (livingEntity.hasStatusEffect(StatusEffects.INVISIBILITY)) {
-			StatusEffectInstance invisibility = livingEntity.getStatusEffect(StatusEffects.INVISIBILITY);
-			assert invisibility != null;
-			if (invisibility.getAmplifier() >= amplifier) runnable.run();
+		if (amplifierHasEnabledEffects(amplifier)) {
+			if (livingEntity.hasStatusEffect(StatusEffects.INVISIBILITY)) {
+				StatusEffectInstance invisibility = livingEntity.getStatusEffect(StatusEffects.INVISIBILITY);
+				assert invisibility != null;
+				if (invisibility.getAmplifier() >= amplifier) runnable.run();
+			}
 		}
-	};
+	}
 }
