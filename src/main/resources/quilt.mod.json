@@ -16,7 +16,7 @@
 				"issues": "https://github.com/MModding/MModding-Library/issues",
 				"sources": "https://github.com/MModding/MModding-Library"
 			},
-			"icon": "assets/mmodding_lib/icon.png"
+			"icon": "assets/invisibility_plus/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
