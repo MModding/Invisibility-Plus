@@ -14,12 +14,13 @@ public class InvisibilityPlusConfig implements Config {
 	}
 
 	@Override
-	public ConfigObject.Builder defaultConfig() {
+	public ConfigObject defaultConfig() {
 		return new ConfigObject.Builder()
 				.addBooleanParameter("inv2effects", true)
 				.addBooleanParameter("inv3effects", true)
 				.addBooleanParameter("inv4effects", true)
-				.addBooleanParameter("inv5effects", true);
+				.addBooleanParameter("inv5effects", true)
+				.build();
 	}
 
 	@Override

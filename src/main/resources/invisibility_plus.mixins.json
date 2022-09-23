@@ -9,7 +9,10 @@
     "PotionsAccessor",
     "PotionsMixin"
   ],
-  "client": [],
+  "client": [
+    "ArmorFeatureRendererMixin",
+    "HeldItemFeatureRendererMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
 	}
