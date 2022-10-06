@@ -1,5 +1,6 @@
 package com.mmodding.invisibility_plus;
 
+import com.mmodding.invisibility_plus.init.InvisibilityPotions;
 import com.mmodding.mmodding_lib.library.base.MModdingModContainer;
 import com.mmodding.mmodding_lib.library.base.MModdingModInitializer;
 import com.mmodding.mmodding_lib.library.config.Config;

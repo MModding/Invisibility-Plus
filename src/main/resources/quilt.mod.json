@@ -20,7 +20,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "com.mmodding.invisibility_plus.InvisibilityPlus"
+			"init": "com.mmodding.invisibility_plus.InvisibilityPlus",
+			"mmodding_bootstrap_init": "com.mmodding.invisibility_plus.InvisibilityPlusBootStrap"
 		},
 		"depends": [
 			{

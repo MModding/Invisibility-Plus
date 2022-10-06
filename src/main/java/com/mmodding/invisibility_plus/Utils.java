@@ -1,9 +1,9 @@
 package com.mmodding.invisibility_plus;
 
+import com.mmodding.mmodding_lib.library.potions.CustomPotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.Identifier;
 
 public class Utils {
@@ -14,8 +14,8 @@ public class Utils {
 		return new Identifier(Utils.modIdentifier, path);
 	}
 
-	public static Potion createInvisibilityPotion(int amplifier) {
-		return new Potion("invisibility", new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, amplifier));
+	public static CustomPotion createInvisibilityPotion(int amplifier) {
+		return new CustomPotion("invisibility", new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, amplifier));
 	}
 
 	public static boolean amplifierHasEnabledEffects(int amplifier) {

@@ -1,6 +1,5 @@
 package com.mmodding.invisibility_plus.mixin;
 
-import com.mmodding.invisibility_plus.Utils;
 import com.mmodding.invisibility_plus.init.InvisibilityPotions;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
@@ -15,10 +14,10 @@ public abstract class PotionsMixin {
 	@Inject(method = "register", at = @At(value = "TAIL"))
 	private static void registerInvisibilityPotions(String name, Potion potion, CallbackInfoReturnable<Potion> cir) {
 		if (name.equals("invisibility")) {
-			InvisibilityPotions.EFFICIENT_INVISIBILITY = PotionsAccessor.invokeRegister("efficient_invisibility", Utils.createInvisibilityPotion(1));
-			InvisibilityPotions.VERY_EFFICIENT_INVISIBILITY = PotionsAccessor.invokeRegister("very_efficient_invisibility", Utils.createInvisibilityPotion(2));
-			InvisibilityPotions.STRONG_INVISIBILITY = PotionsAccessor.invokeRegister("strong_invisibility", Utils.createInvisibilityPotion(3));
-			InvisibilityPotions.VERY_STRONG_INVISIBILITY = PotionsAccessor.invokeRegister("very_strong_invisibility", Utils.createInvisibilityPotion(4));
+			InvisibilityPotions.EFFICIENT_INVISIBILITY.register("efficient_invisibility");
+			InvisibilityPotions.VERY_EFFICIENT_INVISIBILITY.register("very_efficient_invisibility");
+			InvisibilityPotions.STRONG_INVISIBILITY.register("strong_invisibility");
+			InvisibilityPotions.VERY_STRONG_INVISIBILITY.register("very_strong_invisibility");
 		}
 	}
 }
