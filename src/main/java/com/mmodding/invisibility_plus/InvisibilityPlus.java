@@ -1,6 +1,5 @@
 package com.mmodding.invisibility_plus;
 
-import com.mmodding.invisibility_plus.init.InvisibilityPotions;
 import com.mmodding.mmodding_lib.library.base.MModdingModContainer;
 import com.mmodding.mmodding_lib.library.base.MModdingModInitializer;
 import com.mmodding.mmodding_lib.library.config.Config;
@@ -16,17 +15,23 @@ public class InvisibilityPlus implements MModdingModInitializer {
 
 	public static MModdingModContainer mod;
 
-	public static ConfigObject config;
+	public static Config config;
 
-	@Override
-	public List<ElementsInitializer> getElementsInitializers() {
-		return new ArrayList<>();
-	}
+	public static ConfigObject staticConfig;
+
+	public static ConfigObject serverConfig;
 
 	@Nullable
 	@Override
 	public Config getConfig() {
 		return new InvisibilityPlusConfig();
+	}
+
+	@Override
+	public List<ElementsInitializer> getElementsInitializers() {
+		List<ElementsInitializer> elementsInitializers = new ArrayList<>();
+		elementsInitializers.add(new Events());
+		return elementsInitializers;
 	}
 
 	@Override
@@ -36,6 +41,7 @@ public class InvisibilityPlus implements MModdingModInitializer {
 		InvisibilityPlus.mod = MModdingModContainer.from(mod);
 
 		assert this.getConfig() != null;
-		InvisibilityPlus.config = this.getConfig().getContent();
+		InvisibilityPlus.config = this.getConfig();
+		InvisibilityPlus.staticConfig = this.getConfig().getContent();
 	}
 }

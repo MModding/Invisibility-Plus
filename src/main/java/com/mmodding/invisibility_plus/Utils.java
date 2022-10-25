@@ -1,10 +1,13 @@
 package com.mmodding.invisibility_plus;
 
 import com.mmodding.mmodding_lib.library.potions.CustomPotion;
+import net.fabricmc.api.EnvType;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
+import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
 
 public class Utils {
 
@@ -19,11 +22,22 @@ public class Utils {
 	}
 
 	public static boolean amplifierHasEnabledEffects(int amplifier) {
+		if (MinecraftQuiltLoader.getEnvironmentType() == EnvType.CLIENT) {
+			if (!MinecraftClient.getInstance().isInSingleplayer() || InvisibilityPlus.serverConfig != null) {
+				return switch (amplifier) {
+					case 1 -> InvisibilityPlus.serverConfig.getBoolean("inv2effects");
+					case 2 -> InvisibilityPlus.serverConfig.getBoolean("inv3effects");
+					case 3 -> InvisibilityPlus.serverConfig.getBoolean("inv4effects");
+					case 4 -> InvisibilityPlus.serverConfig.getBoolean("inv5effects");
+					default -> false;
+				};
+			}
+		}
 		return switch (amplifier) {
-			case 1 -> InvisibilityPlus.config.getBoolean("inv2effects");
-			case 2 -> InvisibilityPlus.config.getBoolean("inv3effects");
-			case 3 -> InvisibilityPlus.config.getBoolean("inv4effects");
-			case 4 -> InvisibilityPlus.config.getBoolean("inv5effects");
+			case 1 -> InvisibilityPlus.staticConfig.getBoolean("inv2effects");
+			case 2 -> InvisibilityPlus.staticConfig.getBoolean("inv3effects");
+			case 3 -> InvisibilityPlus.staticConfig.getBoolean("inv4effects");
+			case 4 -> InvisibilityPlus.staticConfig.getBoolean("inv5effects");
 			default -> false;
 		};
 	}

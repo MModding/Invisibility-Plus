@@ -9,6 +9,11 @@ import net.minecraft.text.Text;
 public class InvisibilityPlusConfig implements Config {
 
 	@Override
+	public String getConfigName() {
+		return "invisibility_plus";
+	}
+
+	@Override
 	public String getFileName() {
 		return "invisibility_plus/common";
 	}
