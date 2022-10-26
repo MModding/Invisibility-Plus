@@ -42,6 +42,6 @@ public class InvisibilityPlus implements MModdingModInitializer {
 
 		assert this.getConfig() != null;
 		InvisibilityPlus.config = this.getConfig();
-		InvisibilityPlus.staticConfig = this.getConfig().getContent();
+		InvisibilityPlus.staticConfig = this.getConfig().getContent().copy();
 	}
 }
