@@ -1,5 +1,6 @@
 package com.mmodding.invisibility_plus;
 
+import com.mmodding.invisibility_plus.accessors.EntityAccessor;
 import com.mmodding.mmodding_lib.library.potions.CustomPotion;
 import net.fabricmc.api.EnvType;
 import net.minecraft.client.MinecraftClient;
@@ -44,10 +45,8 @@ public class Utils {
 
 	public static void checkInvisibilityAmplifierAndRun(LivingEntity livingEntity, int amplifier, Runnable runnable) {
 		if (amplifierHasEnabledEffects(amplifier)) {
-			if (livingEntity.hasStatusEffect(StatusEffects.INVISIBILITY)) {
-				StatusEffectInstance invisibility = livingEntity.getStatusEffect(StatusEffects.INVISIBILITY);
-				assert invisibility != null;
-				if (invisibility.getAmplifier() >= amplifier) runnable.run();
+			if (((EntityAccessor) livingEntity).getInvisibilityAmplifier() >= amplifier) {
+				runnable.run();
 			}
 		}
 	}

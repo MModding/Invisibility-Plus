@@ -1,29 +1,52 @@
 package com.mmodding.invisibility_plus.mixin;
 
 import com.mmodding.invisibility_plus.Utils;
+import com.mmodding.invisibility_plus.accessors.EntityAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(Entity.class)
-public abstract class EntityMixin {
+public abstract class EntityMixin implements EntityAccessor {
+
+	private static final TrackedData<Integer> INVISIBILITY_AMPLIFIER = DataTracker.registerData(Entity.class, TrackedDataHandlerRegistry.INTEGER);
 
 	@Shadow
 	public abstract void emitGameEvent(GameEvent event);
+
+	@Shadow
+	public abstract DataTracker getDataTracker();
+
+	@Shadow
+	protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {}
+
+	public int getInvisibilityAmplifier() {
+		return this.getDataTracker().get(INVISIBILITY_AMPLIFIER);
+	}
+
+	public void setInvisibilityAmplifier(int amplifier) {
+		this.getDataTracker().set(INVISIBILITY_AMPLIFIER, amplifier);
+	}
+
+	@Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;initDataTracker()V", shift = At.Shift.BEFORE))
+	private void init(EntityType<?> entityType, World world, CallbackInfo ci) {
+		this.getDataTracker().startTracking(INVISIBILITY_AMPLIFIER, 0);
+	}
 
 	@Inject(method = "playStepSound", at = @At(value = "HEAD"), cancellable = true)
 	private void conditionalStepSound(BlockPos pos, BlockState state, CallbackInfo ci) {
