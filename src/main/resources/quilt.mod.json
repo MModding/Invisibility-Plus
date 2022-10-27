@@ -6,7 +6,7 @@
 		"version": "${version}",
 		"metadata": {
 			"name": "Invisibility Plus",
-			"description": "None",
+			"description": "Invisibility Plus is a mod that makes the next 4 levels of invisibility potions useful.",
 			"contributors": {
 				"MModding Team": "Owner",
 				"FirstMegaGame4": "Author"
@@ -27,7 +27,7 @@
 		"depends": [
 			{
 				"id": "quilt_loader",
-				"versions": ">=0.17.0-"
+				"versions": ">=0.17.6-"
 			},
 			{
 				"id": "quilted_fabric_api",
