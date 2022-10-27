@@ -7,12 +7,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends EntityMixin {
@@ -43,14 +48,22 @@ public abstract class LivingEntityMixin extends EntityMixin {
 		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 2, ci::cancel);
 	}
 
-	@Inject(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), cancellable = true)
-	private void conditionalDrownParticles(CallbackInfo ci) {
-		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 2, ci::cancel);
+	@Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"))
+	private void conditionalDrownParticles(World world, ParticleEffect parameters, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+		AtomicBoolean bool = new AtomicBoolean(false);
+		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 2, () -> bool.set(true));
+		if (bool.get()) return;
+		world.addParticle(parameters, x, y, z, velocityX, velocityY, velocityZ);
 	}
 
 	@Inject(method = "displaySoulSpeedEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), cancellable = true)
 	private void conditionalSoulSpeedParticles(CallbackInfo ci) {
 		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 2, ci::cancel);
+	}
+
+	@Inject(method = "displaySoulSpeedEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V"), cancellable = true)
+	private void conditionalSoulSpeedSound(CallbackInfo ci) {
+		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 1, ci::cancel);
 	}
 
 	@Inject(method = "getArmorVisibility", at = @At(value = "RETURN"), cancellable = true)
