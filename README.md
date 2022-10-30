@@ -10,6 +10,20 @@ Invisibility Plus is a mod that makes the next 4 levels of invisibility potions 
 
 ![Java CI with Gradle](https://github.com/MModding/MModding-Library/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=main)
 
+## Effects
+
+### Invisibility II:
+You no longer make noise when walking or swimming.
+
+### Invisibility III:
+You no longer make particles.
+
+### Invisibility IV:
+Your armor becomes invisible.
+
+### Invisibility V:
+The item in hand is no longer visible.
+
 ## Crafting
 
 ### Invisibility II
