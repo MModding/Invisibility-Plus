@@ -2,13 +2,11 @@ package com.mmodding.invisibility_plus;
 
 import com.mmodding.invisibility_plus.accessors.EntityAccessor;
 import com.mmodding.mmodding_lib.library.potions.CustomPotion;
-import net.fabricmc.api.EnvType;
-import net.minecraft.client.MinecraftClient;
+import com.mmodding.mmodding_lib.library.utils.EnvironmentUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
-import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
 
 public class Utils {
 
@@ -23,8 +21,8 @@ public class Utils {
 	}
 
 	public static boolean amplifierHasEnabledEffects(int amplifier) {
-		if (MinecraftQuiltLoader.getEnvironmentType() == EnvType.CLIENT) {
-			if (!MinecraftClient.getInstance().isInSingleplayer() || InvisibilityPlus.serverConfig != null) {
+		if (EnvironmentUtils.isClient()) {
+			if (!EnvironmentUtils.isInSinglePlayer() || InvisibilityPlus.serverConfig != null) {
 				return switch (amplifier) {
 					case 1 -> InvisibilityPlus.serverConfig.getBoolean("inv2effects");
 					case 2 -> InvisibilityPlus.serverConfig.getBoolean("inv3effects");

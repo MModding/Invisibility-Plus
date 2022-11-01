@@ -10,6 +10,8 @@ Invisibility Plus is a mod that makes the next 4 levels of invisibility potions 
 
 ![Java CI with Gradle](https://github.com/MModding/MModding-Library/workflows/Java%20CI%20with%20Gradle/badge.svg?branch=main)
 
+<a href="https://modrinth.com/mod/mmodding-library"><img src="https://raw.githubusercontent.com/MModding/mmodding.github.io/main/assets/requires_library.png" width="300"></img></a>
+
 ## Effects
 
 ### Invisibility II:
