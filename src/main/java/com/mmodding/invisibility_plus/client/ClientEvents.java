@@ -1,7 +1,7 @@
 package com.mmodding.invisibility_plus.client;
 
 import com.mmodding.invisibility_plus.InvisibilityPlus;
-import com.mmodding.mmodding_lib.library.client.events.ClientConfigNetworkingEvents;
+import com.mmodding.mmodding_lib.library.events.client.ClientConfigNetworkingEvents;
 import com.mmodding.mmodding_lib.library.initializers.ClientElementsInitializer;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.quiltmc.qsl.networking.api.client.ClientPlayConnectionEvents;
