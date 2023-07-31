@@ -5,6 +5,7 @@ import com.mmodding.mmodding_lib.library.base.MModdingModInitializer;
 import com.mmodding.mmodding_lib.library.config.Config;
 import com.mmodding.mmodding_lib.library.config.ConfigObject;
 import com.mmodding.mmodding_lib.library.initializers.ElementsInitializer;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.ModContainer;
 
@@ -43,5 +44,13 @@ public class InvisibilityPlus implements MModdingModInitializer {
 		assert this.getConfig() != null;
 		InvisibilityPlus.config = this.getConfig();
 		InvisibilityPlus.staticConfig = this.getConfig().getContent().copy();
+	}
+
+	public static String id() {
+		return "invisibility_plus";
+	}
+
+	public static Identifier createId(String path) {
+		return new Identifier(InvisibilityPlus.id(), path);
 	}
 }

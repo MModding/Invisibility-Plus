@@ -13,7 +13,7 @@ public class ClientEvents implements ClientElementsInitializer {
 	public void registerClient() {
 
 		ClientConfigNetworkingEvents.AFTER.register(config -> {
-			if (config.getConfigName().equals("invisibility_plus")) {
+			if (config.getQualifier().equals("invisibility_plus")) {
 				InvisibilityPlus.serverConfig = config.getContent().copy();
 			}
 		});

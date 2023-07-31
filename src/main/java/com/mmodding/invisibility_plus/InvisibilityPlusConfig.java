@@ -2,19 +2,19 @@ package com.mmodding.invisibility_plus;
 
 import com.mmodding.mmodding_lib.library.config.Config;
 import com.mmodding.mmodding_lib.library.config.ConfigObject;
-import com.mmodding.mmodding_lib.library.config.screen.ConfigScreen;
-import com.mmodding.mmodding_lib.library.config.screen.ConfigScreenOptions;
+import com.mmodding.mmodding_lib.library.config.client.screen.ConfigScreen;
+import com.mmodding.mmodding_lib.library.config.client.screen.ConfigScreenOptions;
 import net.minecraft.text.Text;
 
 public class InvisibilityPlusConfig implements Config {
 
 	@Override
-	public String getConfigName() {
+	public String getQualifier() {
 		return "invisibility_plus";
 	}
 
 	@Override
-	public String getFileName() {
+	public String getFilePath() {
 		return "invisibility_plus/common";
 	}
 

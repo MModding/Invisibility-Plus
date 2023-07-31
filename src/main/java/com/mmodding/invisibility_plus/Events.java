@@ -9,7 +9,7 @@ public class Events implements ElementsInitializer {
 	public void register() {
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
 			if (server.isDedicated()) {
-				MModdingLib.configs.get(InvisibilityPlus.config.getConfigName()).sendServerConfigToClient(handler.getPlayer());
+				MModdingLib.CONFIGS.get(InvisibilityPlus.config.getQualifier()).sendServerConfigToClient(handler.getPlayer());
 			}
 		});
 	}

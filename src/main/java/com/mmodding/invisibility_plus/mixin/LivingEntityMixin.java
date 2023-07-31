@@ -11,6 +11,7 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -76,6 +77,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
 		Utils.checkInvisibilityAmplifierAndRun(this.getObject(), 4, ci::cancel);
 	}
 
+	@Unique
 	private LivingEntity getObject() {
 		return (LivingEntity) (Object) this;
 	}

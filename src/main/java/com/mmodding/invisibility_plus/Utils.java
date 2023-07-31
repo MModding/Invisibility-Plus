@@ -6,15 +6,8 @@ import com.mmodding.mmodding_lib.library.utils.EnvironmentUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Identifier;
 
 public class Utils {
-
-	public static final String modIdentifier = "invisibility_plus";
-
-	public static Identifier newIdentifier(String path) {
-		return new Identifier(Utils.modIdentifier, path);
-	}
 
 	public static CustomPotion createInvisibilityPotion(int amplifier) {
 		return new CustomPotion("invisibility", new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, amplifier));
@@ -42,7 +35,7 @@ public class Utils {
 	}
 
 	public static void checkInvisibilityAmplifierAndRun(LivingEntity livingEntity, int amplifier, Runnable runnable) {
-		if (amplifierHasEnabledEffects(amplifier)) {
+		if (Utils.amplifierHasEnabledEffects(amplifier)) {
 			if (((EntityAccessor) livingEntity).getInvisibilityAmplifier() >= amplifier) {
 				runnable.run();
 			}
