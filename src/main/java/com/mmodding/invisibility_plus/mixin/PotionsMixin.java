@@ -11,13 +11,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Potions.class)
 public abstract class PotionsMixin {
 
-	@Inject(method = "register", at = @At(value = "TAIL"))
-	private static void registerInvisibilityPotions(String name, Potion potion, CallbackInfoReturnable<Potion> cir) {
-		if (name.equals("invisibility")) {
-			InvisibilityPotions.EFFICIENT_INVISIBILITY.register("efficient_invisibility");
-			InvisibilityPotions.VERY_EFFICIENT_INVISIBILITY.register("very_efficient_invisibility");
-			InvisibilityPotions.STRONG_INVISIBILITY.register("strong_invisibility");
-			InvisibilityPotions.VERY_STRONG_INVISIBILITY.register("very_strong_invisibility");
-		}
-	}
+    @Inject(method = "register", at = @At(value = "TAIL"))
+    private static void registerInvisibilityPotions(String name, Potion potion, CallbackInfoReturnable<Potion> cir) {
+        if (name.equals("invisibility")) {
+            InvisibilityPotions.EFFICIENT_INVISIBILITY.register("efficient_invisibility");
+            InvisibilityPotions.VERY_EFFICIENT_INVISIBILITY.register("very_efficient_invisibility");
+            InvisibilityPotions.STRONG_INVISIBILITY.register("strong_invisibility");
+            InvisibilityPotions.VERY_STRONG_INVISIBILITY.register("very_strong_invisibility");
+        }
+    }
 }

@@ -20,8 +20,6 @@ public class InvisibilityPlusClient implements MModdingClientModInitializer {
 
 	@Override
 	public List<ClientElementsInitializer> getClientElementsInitializers() {
-		List<ClientElementsInitializer> clientElementsInitializers = new ArrayList<>();
-		clientElementsInitializers.add(new ClientEvents());
-		return clientElementsInitializers;
+		return new ArrayList<>();
 	}
 }

@@ -1,7 +1,7 @@
 package com.mmodding.invisibility_plus.mixin;
 
 import com.mmodding.invisibility_plus.Utils;
-import com.mmodding.invisibility_plus.accessors.EntityAccessor;
+import com.mmodding.invisibility_plus.ducks.EntityDuckInterface;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -25,7 +25,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
 
 	@Inject(method = "updatePotionVisibility", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setInvisible(Z)V", ordinal = 0))
 	private void removeInvisibility(CallbackInfo ci) {
-		((EntityAccessor) this.getObject()).setInvisibilityAmplifier(0);
+		((EntityDuckInterface) this.getObject()).invisibility_plus$setInvisibilityAmplifier(0);
 	}
 
 	@Inject(method = "updatePotionVisibility", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setInvisible(Z)V", ordinal = 1))
@@ -33,7 +33,7 @@ public abstract class LivingEntityMixin extends EntityMixin {
 		if (this.getObject().hasStatusEffect(StatusEffects.INVISIBILITY)) {
 			StatusEffectInstance instance = this.getObject().getStatusEffect(StatusEffects.INVISIBILITY);
 			if (instance != null && instance.getAmplifier() != 0) {
-				((EntityAccessor) this.getObject()).setInvisibilityAmplifier(instance.getAmplifier());
+				((EntityDuckInterface) this.getObject()).invisibility_plus$setInvisibilityAmplifier(instance.getAmplifier());
 			}
 		}
 	}

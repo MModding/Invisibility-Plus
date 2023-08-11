@@ -1,7 +1,7 @@
 package com.mmodding.invisibility_plus.mixin;
 
 import com.mmodding.invisibility_plus.Utils;
-import com.mmodding.invisibility_plus.accessors.EntityAccessor;
+import com.mmodding.invisibility_plus.ducks.EntityDuckInterface;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(Entity.class)
-public abstract class EntityMixin implements EntityAccessor {
+public abstract class EntityMixin implements EntityDuckInterface {
 
 	@Unique
 	private static final TrackedData<Integer> INVISIBILITY_AMPLIFIER = DataTracker.registerData(Entity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -36,16 +36,6 @@ public abstract class EntityMixin implements EntityAccessor {
 
 	@Shadow
 	protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {}
-
-	@Unique
-	public int getInvisibilityAmplifier() {
-		return this.getDataTracker().get(INVISIBILITY_AMPLIFIER);
-	}
-
-	@Unique
-	public void setInvisibilityAmplifier(int amplifier) {
-		this.getDataTracker().set(INVISIBILITY_AMPLIFIER, amplifier);
-	}
 
 	@Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;initDataTracker()V", shift = At.Shift.BEFORE))
 	private void init(EntityType<?> entityType, World world, CallbackInfo ci) {
@@ -88,5 +78,15 @@ public abstract class EntityMixin implements EntityAccessor {
 		if ((Entity) (Object) this instanceof LivingEntity livingEntity) {
 			Utils.checkInvisibilityAmplifierAndRun(livingEntity, 2, () -> cir.setReturnValue(false));
 		}
+	}
+
+	@Override
+	public int invisibility_plus$getInvisibilityAmplifier() {
+		return this.getDataTracker().get(INVISIBILITY_AMPLIFIER);
+	}
+
+	@Override
+	public void invisibility_plus$setInvisibilityAmplifier(int amplifier) {
+		this.getDataTracker().set(INVISIBILITY_AMPLIFIER, amplifier);
 	}
 }

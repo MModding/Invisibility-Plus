@@ -32,4 +32,9 @@ public class InvisibilityPlusConfig implements Config {
 	public ConfigScreenOptions getConfigOptions() {
 		return new ConfigScreenOptions(Text.of("Invisibility Plus Config"), new ConfigScreen.BlockTextureLocation("iron_block.png"));
 	}
+
+	@Override
+	public NetworkingState getNetworkingSate() {
+		return NetworkingState.LOCAL_CACHES;
+	}
 }
