@@ -2,8 +2,8 @@ package com.mmodding.invisibility_plus;
 
 import com.mmodding.mmodding_lib.library.config.Config;
 import com.mmodding.mmodding_lib.library.config.ConfigObject;
-import com.mmodding.mmodding_lib.library.config.client.screen.ConfigScreen;
 import com.mmodding.mmodding_lib.library.config.client.screen.ConfigScreenOptions;
+import com.mmodding.mmodding_lib.library.utils.TextureLocation;
 import net.minecraft.text.Text;
 
 public class InvisibilityPlusConfig implements Config {
@@ -30,7 +30,7 @@ public class InvisibilityPlusConfig implements Config {
 
 	@Override
 	public ConfigScreenOptions getConfigOptions() {
-		return new ConfigScreenOptions(Text.of("Invisibility Plus Config"), new ConfigScreen.BlockTextureLocation("iron_block.png"));
+		return new ConfigScreenOptions(Text.of("Invisibility Plus Config"), new TextureLocation.Block("iron_block"));
 	}
 
 	@Override
