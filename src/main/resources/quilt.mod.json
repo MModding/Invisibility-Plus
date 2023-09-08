@@ -22,7 +22,7 @@
 		"entrypoints": {
 			"init": "com.mmodding.invisibility_plus.InvisibilityPlus",
 			"client_init": "com.mmodding.invisibility_plus.client.InvisibilityPlusClient",
-			"mmodding_bootstrap_init": "com.mmodding.invisibility_plus.InvisibilityPlusBootStrap"
+			"mmodding_bootstrap_init": "com.mmodding.invisibility_plus.bootstrap.InvisibilityPlusBootstrap"
 		},
 		"depends": [
 			{
